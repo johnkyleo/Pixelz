@@ -6,9 +6,9 @@ import Product from "./pages/Product";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Footer from "./components/Footer";
-import bannermens from './assets/bannermens.png'
-import bannerwomens from './assets/bannerwomens.png'
-import bannerkids from './assets/bannerkids.png'
+import phones from './assets/phones.png'
+import laptops from './assets/laptops.png'
+import accessories from './assets/accessories.png'
 
 
 
@@ -21,9 +21,9 @@ export default function App() {
         <Routes>
 
           <Route path="/" element={<Home/>} />
-          <Route path="/phone" element={<Category category="phone" banner={bannermens}/>} />
-          <Route path="/laptop" element={<Category category="laptop" banner={bannerwomens}/>} />
-          <Route path="/accessory" element={<Category category="accessory" banner={bannerkids}/>} />
+          <Route path="/phone" element={<Category category="phone" banner={phones}/>} />
+          <Route path="/laptop" element={<Category category="laptop" banner={laptops}/>} />
+          <Route path="/accessory" element={<Category category="accessory" banner={accessories}/>} />
           <Route path="/product" element={<Product/>}>
               <Route path=":productId" element={<Product/>}/>
           </Route>

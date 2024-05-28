@@ -10,9 +10,8 @@ const Hero = () => {
         <div className='max_padd_container relative top-32 xs:top-52'>
             <h1 className='text-slate-50 h1 capitalize max-w-[37rem]'>Digital Shop Hub Online Junction</h1>
             <p className='text-slate-50 regular-16 mt-6 max-w-[33rem] '>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Necessitatibus ipsa praesentium perspiciatis sapiente, 
-                reiciendis error repudiandae fugit, veniam adipisci sunt animi dicta? 
-                A officia similique consectetur culpa vel voluptatem magnam!</p>
+                Necessitatibus ipsa praesentium perspiciatis sapiente 
+               </p>
             <div className='flexStart !items-center gap-x-4 my-10 text-slate-50'>
                 <div className='!regular-24 flexCenter gap-x-3'>
                 <FaStar />

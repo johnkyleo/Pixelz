@@ -9,7 +9,6 @@ import RelatedProducts from "../components/RelatedProducts";
 const Product = () => {
   const {all_products} = useContext(ShopContext);
   const {productId} = useParams();
-  const productIdNumber = Number(productId);
   
   
   const product = all_products.find((e)=> e.id === Number(productId));

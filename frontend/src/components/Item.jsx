@@ -23,7 +23,7 @@ const Item = ({id, name, image, old_price, new_price}) => {
                     <div className='bold-16'>
                         ${new_price}
                     </div>
-                    <div className='text-secondary bold-16 line-through'>
+                    <div className='bold-16 line-through text-orange-600'>
                         ${old_price}
                     </div>
                 </div>
