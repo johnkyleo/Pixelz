@@ -3,6 +3,7 @@ import React, { createContext, useEffect, useState } from 'react';
 
 export const ShopContext = createContext(null);
 
+
 const getDefaultCart = () => {
   let cart = {};
   for (let index = 0; index < 300; index++) {
@@ -15,16 +16,20 @@ const ShopContextProvider = (props) => {
   const [cartItems, setCartItems] = useState(getDefaultCart());
   const[all_products, setAll_products] = useState([]);
   const token = localStorage.getItem('auth-token');
+  const api = import.meta.env.VITE_SERVER_URI;
+  console.log(api)
+
 
   useEffect(() => {
-    fetch('http://localhost:4000/allproducts').then((response) => response.json()).then((data) => setAll_products(data));
+    fetch(`${api}/allproducts`).then((response) => response.json()).then((data) => setAll_products(data));
     if(token){
-      fetch ("http://localhost:4000/getcart", {
+      fetch (`${api}/getcart`, {
         method: 'POST',
         headers:{
           Accept: 'application/form-data', 
           'auth-token': token,
           'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin' : '*',
         },
         body: "", 
       }).then((response) => response.json()).then((data) => setCartItems(data));
@@ -35,12 +40,13 @@ const ShopContextProvider = (props) => {
   const addToCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     if(token){
-      fetch ("http://localhost:4000/addtocart", {
+      fetch (`${api}/addtocart`, {
         method: 'POST',
         headers:{
           Accept: 'application/form-data',
           'auth-token': token,
           'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin' : '*',
         },
         body:JSON.stringify({'itemId': itemId}),  
       }).then((response) => response.json()).then((data) => console.log(data));
@@ -50,12 +56,13 @@ const ShopContextProvider = (props) => {
   const removeFromCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
     if(token){
-      fetch ("http://localhost:4000/removefromcart", {
+      fetch (`${api}/removefromcart`, {
         method: 'POST',
         headers:{
           Accept: 'application/form-data',
           'auth-token': token,
           'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin' : '*',
         },
         body:JSON.stringify({'itemId': itemId}),  
       }).then((response) => response.json()).then((data) => console.log(data));

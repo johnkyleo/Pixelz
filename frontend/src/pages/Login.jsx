@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast';
 
+
 const Login = () => {
 
   const [state, setState] = useState("Login")
+  const api = import.meta.env.SERVER_URI;
 
   const [formData, setFormData] = useState({
     username: '',
@@ -18,7 +20,7 @@ const Login = () => {
   const login = async() => {
     console.log("LOGIN CLICKED", formData)
     let responseData;
-     await fetch('http://localhost:4000/login', {
+     await fetch(`${api}/login`, {
       method: 'POST',
       headers:{
         Accept: 'application/formData',
@@ -39,7 +41,7 @@ const Login = () => {
   const signup = async() => {
     console.log("Sign Up CLICKED", formData)
     let responseData;
-     await fetch('http://localhost:4000/signup', {
+     await fetch(`${api}/signup`, {
       method: 'POST',
       headers:{
         Accept: 'application/formData',

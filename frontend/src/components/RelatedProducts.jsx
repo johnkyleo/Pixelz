@@ -4,16 +4,16 @@ import Item from './Item'
 const RelatedProducts = () => {
 
   const[popular, setPopular] = useState([]);
+  const api = import.meta.env.VITE_SERVER_URI;
 
   useEffect(() => {
-    fetch('http://localhost:4000/popularproducts')
+    fetch(`${api}/popularproducts`)
     .then(response => response.json())
     .then(data => {
        const randomItems = [];
        for (let i = 0; i < 4; i++) {
          const randomIndex = Math.floor(Math.random() * data.length);
          randomItems.push(data[randomIndex]);
-         // remove the selected item from the original array to avoid duplicates
          data.splice(randomIndex, 1);
        }
        setPopular(randomItems);

@@ -1,12 +1,14 @@
 import { useEffect,useState } from 'react';
 import Item from './Item'
 
+
 const Popular = () => {
 
   const[popular, setPopular] = useState([]);
+  const api = import.meta.env.VITE_SERVER_URI;
 
   useEffect(() => {
-    fetch('http://localhost:4000/popularproducts').then((response) => response.json()).then((data) => setPopular(data));
+    fetch(`${api}/popularproducts`).then((response) => response.json()).then((data) => setPopular(data));
   },[])
 
   return (

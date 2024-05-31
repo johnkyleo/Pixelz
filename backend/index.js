@@ -1,7 +1,7 @@
 const port = 4000;
 const express = require("express");
 const app = express();
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const jwt = require("jsonwebtoken");
 const multer =  require("multer");
 const path = require("path");
@@ -9,11 +9,12 @@ const cors = require("cors");
 const { error } = require("console");
 const { type } = require("os");
 const _ = require('lodash');
+require('dotenv').config();
 
 app.use(express.json());
 app.use(cors());
 //DB Connection
-mongoose.connect('mongodb+srv://ecommerceMern:user123@cluster0.ioqumz6.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0');
+mongoose.connect(process.env.DB_URL);
 
 //Api creation
 app.get("/",(req, res)=>{
