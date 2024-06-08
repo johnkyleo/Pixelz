@@ -17,7 +17,6 @@ const ShopContextProvider = (props) => {
   const[all_products, setAll_products] = useState([]);
   const token = localStorage.getItem('auth-token');
   const api = import.meta.env.VITE_SERVER_URI;
-  console.log(api)
 
 
   useEffect(() => {

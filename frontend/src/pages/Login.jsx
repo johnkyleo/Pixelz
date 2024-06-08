@@ -5,7 +5,7 @@ import toast, { Toaster } from 'react-hot-toast';
 const Login = () => {
 
   const [state, setState] = useState("Login")
-  const api = import.meta.env.SERVER_URI;
+  const api = import.meta.env.VITE_SERVER_URI;
 
   const [formData, setFormData] = useState({
     username: '',
