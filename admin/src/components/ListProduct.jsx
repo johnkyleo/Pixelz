@@ -5,10 +5,11 @@ import toast, { Toaster } from 'react-hot-toast';
 
 //Get All Products
 const ListProduct = () => {
+  const api = import.meta.env.VITE_SERVER_URI;
 
     const [allproducts, setAllproducts] = useState([]);
     const fetchInfo = async () =>{
-      await fetch('http://localhost:4000/allproducts')
+      await fetch(`${api}/allproducts`)
       .then((res)=> res.json())
       .then((data)=> {setAllproducts(data)})
     }
@@ -19,7 +20,7 @@ const ListProduct = () => {
 
 //Remove Product
   const remove_product = async (id) => {
-    await fetch("http://localhost:4000/removeproduct",{
+    await fetch(`${api}/removeproduct`,{
       method: 'POST',
       headers: {
         Accept: 'application/json',

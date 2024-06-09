@@ -4,6 +4,7 @@ import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
 const AddProduct = () => {
+  const api = import.meta.env.VITE_SERVER_URI;
 
     const [image, setImage] = useState(false);
     const imageHandler = (e) => {
@@ -28,7 +29,7 @@ const AddProduct = () => {
       let formData = new FormData();
       formData.append('product', image)
 
-      await fetch('http://localhost:4000/upload',{
+      await fetch(`${api}/upload`,{
         method: 'POST',
         headers:{
           Accept: 'application.json'
@@ -40,7 +41,7 @@ const AddProduct = () => {
           if(responseData.success){
             product.image = responseData.image_url;
            
-            await fetch('http://localhost:4000/addproduct',{
+            await fetch(`${api}/addproduct`,{
               method: 'POST',
               headers:{
                 Accept: 'application/json',
