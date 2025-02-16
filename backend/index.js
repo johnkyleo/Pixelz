@@ -12,7 +12,12 @@ const _ = require('lodash');
 require('dotenv').config();
 
 app.use(express.json());
-app.use(cors());
+
+const corsOptions = {
+  origin: 'https://pixelz-admin.vercel.app',
+  optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
 
 
 //DB Connection
