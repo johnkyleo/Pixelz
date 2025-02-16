@@ -13,11 +13,21 @@ require('dotenv').config();
 
 app.use(express.json());
 
+const allowedOrigins = [
+  'https://ecommerce-mern-ebon.vercel.app',
+  'https://pixelz-admin.vercel.app'
+];
+
 const corsOptions = {
-  origin: '*',
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   optionsSuccessStatus: 200
 };
-app.use(cors(corsOptions));
 
 
 //DB Connection
