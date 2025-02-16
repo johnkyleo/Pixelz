@@ -52,7 +52,7 @@ const ListProduct = () => {
                 {allproducts.map((product,i) => (
                   <tr key={i} className='border-b border-slate-900/20 text-gray-30 p-6 medium-14'>
                      <td className='flexStart sm:flexCenter'>
-                     <img src={`upload/images/${product.image}`} alt="" height={43} width={43} className='rounded-lg ring-1 ring-slate-900/5 my-1'/>
+                     <img src={`${product.image}`} alt="" className='rounded-lg ring-1 object-scale-down w-16 h-16 ring-slate-900/5 my-1'/>
                      </td>
                      <td><div className='line-clamp-3'>{product.name}</div></td>
                      <td>${product.old_price}</td>

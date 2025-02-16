@@ -13,13 +13,13 @@ const Item = ({id, name, image, old_price, new_price}) => {
             group-hover:scale-100 transition-all duration-500' ><FaSearch 
             className='hover:rotate-90 hover:scale-125 transition-all duration-200'/> 
             </Link>
-                <img onClick={window.scrollTo(0, 0)} src={image} alt="productImage" className='w-80 h-96 block object-contain group-hover:scale-110
+                <img onClick={window.scrollTo(0, 0)} src={image} alt="productImage" className='w-60 h-80 object-scale-down block group-hover:scale-110
                 transition-all duration-1000'/>
             
         </div>
-        <div className='p-4 overflow-hidden'>
+        <div className='overflow-hidden text-center'>
             <h4 className='my-[6px] medium-16 line-clamp-2 text-gray-30'>{name}</h4>
-                <div className='flex gap-5'>                   
+                <div className='flex gap-5 align-center justify-center'>                   
                     <div className='bold-16'>
                         ${new_price}
                     </div>

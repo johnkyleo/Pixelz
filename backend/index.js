@@ -13,8 +13,16 @@ require('dotenv').config();
 
 app.use(express.json());
 app.use(cors());
+
+
 //DB Connection
-mongoose.connect(process.env.DB_URL);
+mongoose.connect(process.env.DB_URL,{
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+}).then(()=>{
+  console.log("DB Connected")
+}).catch((error)=>{
+  console.log("Error Connecting to Mongo DB: "+ error)});
 
 //Api creation
 app.get("/",(req, res)=>{
@@ -31,13 +39,27 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage:storage});
 //Upload Endpoint
-app.use('/images', express.static('upload/images'))
-app.post('/upload', upload.single('product'),(req, res)=>{
-    res.json({
-      success: 1,
-      image_url: `https://pixelz.onrender.com/images/${req.file.filename}`
-    })
-})
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.post('/upload', upload.single('product'), async (req, res) => {
+  const imageUrl = `/uploads/${req.file.filename}`;
+
+  // Save imageUrl to MongoDB
+  const product = new Product({
+    id: req.body.id,
+    name: req.body.name,
+    image: imageUrl,
+    category: req.body.category,
+    new_price: req.body.new_price,
+    old_price: req.body.old_price,
+  });
+
+  try {
+    await product.save();
+    res.send({ success: true, imageUrl });
+  } catch (error) {
+    res.status(500).send({ success: false, error: error.message });
+  }
+});
 
 //Product Schema
 const Product = mongoose.model("Product",{

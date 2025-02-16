@@ -50,10 +50,22 @@ const AddProduct = () => {
               body: JSON.stringify(product),
             }).then((resp) => resp.json())
             .then((data)=> {
-              data.success ? toast.success("Product Added"):toast.error("Upload Failed")
-            })
-            
-          }
+              if (data.success) {
+                toast.success("Product Added");
+                // Reset form fields
+                setProductDetails({
+                  name: "",
+                  image: "",
+                  category: "phone",
+                  new_price: "",
+                  old_price: ""
+                });
+                setImage(false);
+              } else {
+                toast.error("Upload Failed");
+              }
+            });
+        }
     }
 
 
