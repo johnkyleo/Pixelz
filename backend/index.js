@@ -14,7 +14,7 @@ require('dotenv').config();
 app.use(express.json());
 
 const corsOptions = {
-  origin: 'https://pixelz-admin.vercel.app',
+  origin: '*',
   optionsSuccessStatus: 200
 };
 app.use(cors(corsOptions));
