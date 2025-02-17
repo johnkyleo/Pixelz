@@ -49,10 +49,10 @@ app.get("/", (req, res) => {
 
 // Image Storage using Multer
 const storage = multer.diskStorage({
-  destination: './uploads/images', // Ensure this directory exists
+  destination: '/uploads', // Ensure this directory exists
   filename: (req, file, cb) => {
-    // return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`);
-    return cb(null, `${path.extname(file.originalname)}`);
+    // return filename as original name
+    return cb(null, file.originalname);
   }
 });
 
@@ -63,7 +63,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Upload Endpoint
 app.post('/upload', upload.single('product'), async (req, res) => {
-  const imageUrl = `/uploads/images/${req.file.filename}`; // Ensure the correct path
+  const imageUrl = `/uploads/${req.file.filename}`; // Ensure the correct path
 
   // Save imageUrl to MongoDB
   const product = new Product({
