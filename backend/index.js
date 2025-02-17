@@ -49,9 +49,8 @@ app.get("/", (req, res) => {
 
 // Image Storage using Multer
 const storage = multer.diskStorage({
-  destination: '/uploads', // Ensure this directory exists
+  destination: './uploads', // Ensure this directory exists
   filename: (req, file, cb) => {
-    // return filename as original name
     return cb(null, file.originalname);
   }
 });
