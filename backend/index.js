@@ -14,7 +14,6 @@ require('dotenv').config();
 app.use(express.json());
 
 
-
 app.use(cors());
 
 // DB Connection
@@ -34,9 +33,8 @@ app.get("/", (req, res) => {
 
 
 // Upload Endpoint
-app.post('/upload', upload.single('product'), async (req, res) => {
+app.post('/upload', async (req, res) => {
  
-  // Save imageUrl to MongoDB
   const product = new Product({
     id: req.body.id,
     name: req.body.name,
