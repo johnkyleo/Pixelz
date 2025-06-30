@@ -13,24 +13,9 @@ require('dotenv').config();
 
 app.use(express.json());
 
-// Configure CORS
-const allowedOrigins = [
-  'https://ecommerce-mern-ebon.vercel.app',
-  'https://pixelz-admin.vercel.app'
-];
 
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  optionsSuccessStatus: 200
-};
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 // DB Connection
 mongoose.connect(process.env.DB_URL, {
