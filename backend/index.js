@@ -47,28 +47,15 @@ app.get("/", (req, res) => {
   res.send("Express is running");
 });
 
-// Image Storage using Multer
-const storage = multer.diskStorage({
-  destination: './uploads', // Ensure this directory exists
-  filename: (req, file, cb) => {
-    return cb(null, file.originalname);
-  }
-});
-
-const upload = multer({ storage: storage });
-
-// Serve static files from the 'uploads' directory
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Upload Endpoint
 app.post('/upload', upload.single('product'), async (req, res) => {
-  const imageUrl = `/uploads/${req.file.filename}`; // Ensure the correct path
-
+ 
   // Save imageUrl to MongoDB
   const product = new Product({
     id: req.body.id,
     name: req.body.name,
-    image: imageUrl,
+    image: req.body.image,
     category: req.body.category,
     new_price: req.body.new_price,
     old_price: req.body.old_price,

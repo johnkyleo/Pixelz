@@ -1,4 +1,3 @@
-import uploadarea from '../assets/upload_area.svg'
 import { MdAdd } from "react-icons/md";
 import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
@@ -6,11 +5,6 @@ import toast, { Toaster } from 'react-hot-toast';
 const AddProduct = () => {
   const api = import.meta.env.VITE_SERVER_URI;
 
-    const [image, setImage] = useState(false);
-    const imageHandler = (e) => {
-        setImage(e.target.files[0])
-    }
-    
     const [productDetails, setProductDetails] = useState({
       name: "",
       image: "",
@@ -27,8 +21,7 @@ const AddProduct = () => {
       let product = productDetails;
 
       let formData = new FormData();
-      formData.append('product', image)
-
+     
       await fetch(`${api}/upload`,{
         method: 'POST',
         headers:{
@@ -88,6 +81,11 @@ const AddProduct = () => {
         <input value={productDetails.new_price} onChange={changeHandler} type="text" name="new_price" placeholder='Type here...'
          className='bg-primary outline-none max-w-80 w-full py-3 px-4 rounded-md' />
       </div>
+      <div className='mb-3'>
+        <h4 className='bold-18 pb-2'>Image URL</h4>
+        <input value={productDetails.image} onChange={changeHandler} type="text" name="image" placeholder='Type here...'
+         className='bg-primary outline-none max-w-80 w-full py-3 px-4 rounded-md' />
+      </div>
       <div className='mb-3 flex items-center gap-x-4'>
         <h4 className='bold-18 pb-2'>Product Category</h4>
         <select value={productDetails.category} onChange={changeHandler} name="category" id="" className='bg-primary ring-1
@@ -97,13 +95,8 @@ const AddProduct = () => {
           <option value="accessory">Accessory</option>
         </select>
       </div>
-      <div>
-        <label htmlFor="file-input">
-          <img value={productDetails.category} onChange={changeHandler}
-           src={image?URL.createObjectURL(image):uploadarea} alt="" className='w-20 rounded-sm inline-block'/>
-        </label>
-        <input onChange={imageHandler} type="file" name='image' id='file-input' hidden className='bg-primary max-w-80 w-full py-3 px-4' />
-      </div>
+     
+      
       <button onClick={() => Add_Product()} className='btn_dark_rounded my-4 flexCenter gap-x-1'><MdAdd />Add Product</button>
 
     </div>
