@@ -24,7 +24,7 @@ const CartItems = () => {
             {all_products.map((e) => {
                 if(cartItems[e.id] > 0){
                     return <tr key={e.id} className='border-b border-slate-900/20 text-gray-50 p-6 medium-14 text-center'>
-                        <td className='flexCenter'><img src={e.image} alt="" height={43} width={43} className='rounded-lg ring-1 ring-slate-900/5 my-1'/></td>
+                        <td className='flexCenter'><img src={e.image} alt="" loading="lazy" height={43} width={43} className='rounded-lg ring-1 ring-slate-900/5 my-1'/></td>
                         <td><div className='line-clamp-3'>{e.name}</div></td>
                         <td>${e.new_price}</td>
                         <td className='w-16 h-16 bold'>{cartItems[e.id]}</td>

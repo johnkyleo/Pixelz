@@ -13,7 +13,7 @@ const Item = ({id, name, image, old_price, new_price}) => {
             group-hover:scale-100 transition-all duration-500' ><FaSearch 
             className='hover:rotate-90 hover:scale-125 transition-all duration-200'/> 
             </Link>
-                <img onClick={window.scrollTo(0, 0)} src={image} alt="productImage" className='w-60 h-80 object-scale-down block group-hover:scale-110
+                <img onClick={window.scrollTo(0, 0)} src={image} alt="productImage" loading="lazy" className='w-60 h-80 object-scale-down block group-hover:scale-110
                 transition-all duration-1000'/>
             
         </div>
